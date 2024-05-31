@@ -262,7 +262,7 @@ const Menu: React.FC<NavProps> = ({
                     🔥 Markets
                   </a>
 
-                  <a href="https://intercroneswap.com/nft/minting/" className={`${Style.link} nav-link`}>
+                  <a href="https://nft.intercroneswap.com/" className={`${Style.link} nav-link`}>
                     NFT
                   </a>
                   {/* <NavDropdown title="" id="basic-nav-dropdown">
