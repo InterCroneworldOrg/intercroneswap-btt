@@ -12,19 +12,25 @@ const MenuItem: React.FC<MenuItemProps> = ({
   ...props
 }) => {
   const { linkComponent } = useContext(MenuContext);
-  const itemLinkProps: unknown = href
-    ? {
-        as: linkComponent,
-        href,
-      }
-    : {
-        as: "div",
-      };
+
   return (
     <StyledMenuItemContainer $isActive={isActive} $variant={variant}>
-      <StyledMenuItem {...itemLinkProps} $isActive={isActive} $variant={variant} $statusColor={statusColor} {...props}>
-        {children}
-      </StyledMenuItem>
+      {href ? (
+        <StyledMenuItem
+          as={linkComponent}
+          href={href}
+          $isActive={isActive}
+          $variant={variant}
+          $statusColor={statusColor}
+          {...props}
+        >
+          {children}
+        </StyledMenuItem>
+      ) : (
+        <StyledMenuItem as="div" $isActive={isActive} $variant={variant} $statusColor={statusColor} {...props}>
+          {children}
+        </StyledMenuItem>
+      )}
     </StyledMenuItemContainer>
   );
 };

@@ -1,5 +1,4 @@
-import { Token, ChainId, WETH } from '@intercroneswap/v2-sdk'
-import farms from './farms'
+import { ChainId, WETH } from '@intercroneswap/v2-sdk'
 import { Ifo } from './types'
 
 export const cakeBnbLpToken = WETH[ChainId.TESTNET]

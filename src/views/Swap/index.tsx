@@ -8,10 +8,9 @@ import {
   Box,
   useModal,
   Flex,
-  IconButton,
+  // IconButton,
   BottomDrawer,
   useMatchBreakpoints,
-  CogIcon,
 } from '@pancakeswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -20,9 +19,8 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'contexts/Localization'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
-import { ToggleButton } from 'react-bootstrap'
 import SlippageTabs from 'components/Menu/GlobalSettings/TransactionSettings'
-import useRefreshBlockNumberID from './hooks/useRefreshBlockNumber'
+// import useRefreshBlockNumberID from './hooks/useRefreshBlockNumber'
 import AddressInputPanel from './components/AddressInputPanel'
 import { GreyCard } from '../../components/Card'
 import Column, { AutoColumn } from '../../components/Layout/Column'
@@ -65,29 +63,23 @@ import PriceChartContainer from './components/Chart/PriceChartContainer'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import StyledArrowDown from './arrow-down-yellow'
 
-const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-const SwitchIconButton = styled(IconButton)`
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  .icon-up-down {
-    display: none;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-    .icon-down {
-      display: none;
-      fill: white;
-    }
-    .icon-up-down {
-      display: block;
-      fill: white;
-    }
-  }
-`
+// const SwitchIconButton = styled(IconButton)`
+//   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+//   .icon-up-down {
+//     display: none;
+//   }
+//   &:hover {
+//     background-color: ${({ theme }) => theme.colors.primary};
+//     .icon-down {
+//       display: none;
+//       fill: white;
+//     }
+//     .icon-up-down {
+//       display: block;
+//       fill: white;
+//     }
+//   }
+// `
 
 const StyledMenuButton = styled.button`
   position: relative;
@@ -125,7 +117,7 @@ export default function Swap() {
   const [isChartExpanded, setIsChartExpanded] = useState(false)
   const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
   const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
-  const { refreshBlockNumber, isLoading } = useRefreshBlockNumberID()
+  // const { refreshBlockNumber, isLoading } = useRefreshBlockNumberID()
 
   useEffect(() => {
     setUserChartPreference(isChartDisplayed)
@@ -292,7 +284,7 @@ export default function Swap() {
   }, [priceImpactWithoutFee, swapCallback, tradeToConfirm, t])
 
   // errors
-  const [showInverted, setShowInverted] = useState<boolean>(false)
+  // const [showInverted, setShowInverted] = useState<boolean>(false)
 
   const [showSlippage, setShowSlippage] = useState<boolean>(false)
 
@@ -404,13 +396,13 @@ export default function Swap() {
     'confirmSwapModal',
   )
 
-  const hasAmount = Boolean(parsedAmount)
+  // const hasAmount = Boolean(parsedAmount)
 
-  const onRefreshPrice = useCallback(() => {
-    if (hasAmount) {
-      refreshBlockNumber()
-    }
-  }, [hasAmount, refreshBlockNumber])
+  // const onRefreshPrice = useCallback(() => {
+  //   if (hasAmount) {
+  //     refreshBlockNumber()
+  //   }
+  // }, [hasAmount, refreshBlockNumber])
 
   const StyledHeading = styled.h1`
     font-family: Jost;
@@ -459,7 +451,7 @@ export default function Swap() {
           isOpen={isChartDisplayed}
           setIsOpen={setIsChartDisplayed}
         />
-        <div style={{ width: '100%', display: 'grid', gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr'}}>
+        <div style={{ width: '100%', display: 'grid', gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr' }}>
           <Flex flexDirection="column">
             <StyledSwapContainer $isChartExpanded={isChartExpanded}>
               <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
@@ -476,10 +468,7 @@ export default function Swap() {
                     <AutoColumn gap="sm">
                       <AutoRow gap="7px" justify="space-between" style={{ padding: '0 16px' }}>
                         {/* <SwapPoolTabs active={'swap'} /> */}
-                          <StyledMenuButton
-                          onClick={() => setShowSlippage(!showSlippage)}
-                          value="showSlippage"
-                            >
+                        <StyledMenuButton onClick={() => setShowSlippage(!showSlippage)} value="showSlippage">
                           <span>Advanced Settings</span>
                         </StyledMenuButton>
                         {showSlippage && <SlippageTabs />}
